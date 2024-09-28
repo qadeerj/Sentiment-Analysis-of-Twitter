@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Full Page Header Section -->
+    <header>
+        <div class="header-left">
+            <img src="{{ url_for('static', filename='profile_pics/' + profile_pic) }}" alt="Profile Picture" class="profile-pic-header">
+            <span>{{session['username'] }}</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h3>Sentiment Analysis</h3>
+        <form method="POST" action="/predict">
+            <textarea name="tweet" placeholder="Enter tweet"></textarea><br><br>
+            <button type="submit">Analyze</button>
+        </form>
+
+        {% if prediction_text %}
+            <h4>{{ prediction_text }}</h4>
+
+            <!-- Sentiment bar chart -->
+            <div id="sentiment-chart"></div>
+            <script>
+                // Ensure that the Flask variables are correctly passed
+                var sentimentScore = {{ sentiment_score }};  // Numeric value, no need for safe
+                var barColor = "{{ bar_color }}";  // String value, use quotes
+                var sentimentText = "{{ sentiment_text }}";  // String value, use quotes
+            
+                var data = [{
+                    x: ['Sentiment'],
+                    y: [sentimentScore],
+                    type: 'bar',
+                    marker: {
+                        color: barColor
+                    },
+                    text: [sentimentText],
+                    textposition: 'auto'
+                }];
+                
+                var layout = {
+                    title: 'Sentiment Score',
+                    yaxis: {range: [-1, 1]}  // Keep range fixed from -1 to 1
+                };
+                
+                Plotly.newPlot('sentiment-chart', data, layout);
+            </script>            
+        {% endif %}
+
+        <h3>Analysis History</h3>
+        <ul>
+            {% for tweet, sentiment, date in history %}
+                <li>{{ tweet }} - {{ sentiment }} ({{ date }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sentiment Analysis Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>

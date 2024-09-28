@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>About Us</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>About Us</h2>
+        
+        <h3>Muhammad Qadeer</h3>
+        <p>
+            Hello! I'm Muhammad Qadeer, the developer behind this Twitter Sentiment Analysis web application. I am currently pursuing my studies in Data Science, and I have a passion for exploring how data can provide insights into social media sentiment.
+        </p>
+
+        <h3>About Twitter Sentiment Analysis</h3>
+        <p>
+            This web application utilizes advanced machine learning algorithms to analyze the sentiment of tweets. By processing user input, it determines whether the sentiment of a given tweet is positive, negative, or neutral. This tool is designed to help users understand public sentiment on various topics in real-time, offering valuable insights into trends and opinions expressed on Twitter.
+        </p>
+
+        <p>
+            I believe that sentiment analysis can play a significant role in various fields, including marketing, public relations, and social research. This project is not only a technical challenge but also an exploration of the emotional tone behind the data shared on social media platforms.
+        </p>
+        
+        <a href="/dashboard" class="btn">Back to Dashboard</a>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sentiment Analysis Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>
