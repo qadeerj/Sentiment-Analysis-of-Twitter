@@ -39,7 +39,7 @@ SQLite/MySQL
 Clone the Repository
 bash
 Copy code
-git clone https://github.com/yourusername/twitter-sentiment-analysis.git
+[git clone https://github.com/yourusername/twitter-sentiment-analysis.git](https://github.com/qadeerj/Sentiment-Analysis-of-Twitter)
 cd twitter-sentiment-analysis
 Install Dependencies
 bash
